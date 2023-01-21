@@ -38,8 +38,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ## Shell
 1. Install: `sudo apt install zsh`  
 2. Setup: `zsh`  
-3. Install __oh-my-zsh__:   
-```sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"```
+3. Install __oh-my-zsh__: ```sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"```
 4. Copy .zshrc  
 5. Change shell: `chsh -s $(which zsh)`  
 6. To access history, either use command `history` or see `~/.histfile`.
@@ -116,6 +115,10 @@ Link is [here](https://www.rust-lang.org/tools/install):
 ### Markdown
 Should be easily editable using **vscode**. An alternative way to view markdown is to `sudo apt install grip`, then `grip -b filename.md` to view it in browser.
 
+### Docker
+[Installation Guide](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)  
+After installation, one may optionally run `sudo usermod -aG docker $USER`, so that future docker commands do not require `sudo`.
+
 ### Flutter
 1. Install: `sudo snap install flutter --classic`
 2. Sdk path: `flutter sdk-path`
@@ -141,6 +144,7 @@ TODO
 * [__Discord__](https://discord.com/download)
 * [__Slack__](https://slack.com/downloads/linux)
 * [__VSCode__](https://code.visualstudio.com/Download) (login syncs settings)
+* __Google Earth__ (TODO)
 
 ### Free:
 * __Cura__ (TODO)
