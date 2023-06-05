@@ -48,6 +48,7 @@ source $ZSH/oh-my-zsh.sh
 
 # --- Other export specs ---
 
+# Please modify as needed.
 export MANPATH="/usr/local/man:$MANPATH" # manual path
 export LANG=en_US.UTF-8                  # language config
 export EDITOR='vim'                      # default editors
