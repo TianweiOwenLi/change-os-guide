@@ -96,8 +96,10 @@ export PATH="$PATH:/usr/local/texlive/2023/bin/x86_64-linux"
 
 # Recursively changes permission of all files of a given extension.
 # The `+` in the end is to reduce total function calls.
+# 
+# Usage: chmod_extension 664 pdf
 function chmod_extension(){
-	find . -name $1 -exec chmod $2 {} + 
+	find . -name "*.$2" -exec chmod $1 {} + 
 }
 
 
