@@ -92,7 +92,7 @@ For `gh` setup, run
 (TODO) 
 
 # Environments
-Note that many path exports are in '.zshrc'.
+Note that some path exports are in '.zshrc'.
 
 Also, 
 
@@ -119,25 +119,16 @@ Should be easily editable using **vscode**. An alternative way to view markdown 
 [Installation Guide](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)  
 After installation, one may optionally run `sudo usermod -aG docker $USER`, so that future docker commands do not require `sudo`.
 
-### Flutter
-1. Install: `sudo snap install flutter --classic`
-2. Sdk path: `flutter sdk-path`
-
-### Java
-TODO
 
 # Softwares
 
 ### Comes with OS
 * __Firefox__ (login syncs bookmarks, history, etc.)
 
-### Installable via `sudo snap install`: 
-* __Blender__: `sudo snap install blender --classic`
-* __GIMP__: `sudo snap install gimp`
-* __Krita__: `sudo snap install krita`
-* __Telegram__: `sudo snap install telegram-desktop`
-* __Xournalpp__: `sudo snap install xournalpp`
-* __Zoom__: `sudo snap install zoom-client`
+### Installable via `sudo snap install`:   
+zoom-client, xournalpp, telegram-desktop, krita, gimp
+### Installable via `sudo snap install [name] --classic`:   
+blender
 
 ### Notes about **VsCode**:
 Logging into **VsCode** personal account syncs its settings, which can be neat when installing a new OS. 
@@ -167,11 +158,11 @@ If you restarted the computing device right after a fresh Nvidia driver installa
 3. Under the "Advanced" option, select recovery mode for the latest possible kernel. 
 4. Another menu shall appear. Select `fsck`, `enable networking`, and then `drop to root prompt`. 
 
-Now, mistyping commands may jeopardize your OS, so be careful; run the following to remove all **Nvidia** packages: 
+Now you are in Bash, and mistyping commands may jeopardize your OS, so be careful; run the following to remove all **Nvidia** packages: 
 ```
 sudo apt purge $(dpkg -l | grep ^ii.*nvidia | awk '{print $2}')
 ```
-(note that `dpkg -l` lists all installed packages; `grep ^ii.*nvidia` grabs lines that contain **Nvidia** packages, for more info please search "grep regex cheat sheet"; `awk '{print $2}'` fetches the first term, i.e. package name, from these lines. )
+(`dpkg -l` lists packages; `grep ^ii.*nvidia` grabs lines that contain **Nvidia** packages, for more info please search "grep regex cheat sheet"; `awk '{print $2}'` fetches the first term, i.e. package name, from these lines. )
 
 After the above command finishes executing, run `sudo reboot`, and your computing device shall ideally be able to boot. 
 
