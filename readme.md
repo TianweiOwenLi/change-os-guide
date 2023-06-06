@@ -166,9 +166,6 @@ If you restarted the computing device right after a fresh Nvidia driver installa
    ii. If a menu appears, keep pressing `Esc` until some "Advanced xxx" option appears.
 3. Under the "Advanced" option, select recovery mode for the latest possible kernel. 
 4. Another menu shall appear. Select `fsck`, `enable networking`, and then `drop to root prompt`. 
-5. Now you are in Bash as user `root`. Run `sudo apt purge $(dpkg -l | grep ^ii.*nvidia | awk '{print $2}')` to remove all nvidia packages:  
-In particular,    
-6. Run `sudo reboot`.
 
 Now, mistyping commands may jeopardize your OS, so be careful; run the following to remove all **Nvidia** packages: 
 ```
