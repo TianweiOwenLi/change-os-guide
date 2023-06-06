@@ -145,7 +145,16 @@ From the author's personal observation, the **VsCode** from **snap** packages se
 4. Use powertop to view power saving info
 
 # Nvidia GPU
-Nvidia graphics card drivers [are generally hard to work with](https://www.youtube.com/watch?v=_36yNWw_07g&ab_channel=Kuttofos). Installing the wrong driver, for example, may make you unable to boot, and thus unable to install the correct driver back. To prevent such an issue, I suggest looking into the next item. 
+Nvidia graphics card drivers [are generally hard to work with](https://www.youtube.com/watch?v=_36yNWw_07g&ab_channel=Kuttofos). Installing the wrong driver, for example, may make you unable to boot, and thus unable to install the correct driver back. To prevent such an issue, I suggest looking into the section "If you failed to reboot". 
+
+## Installation
+For Ubuntu 22.04 specifically, I find that installing using GUI method is appropriate; just go to `Software & Updates` > `Additional Drivers` and select `nvidia-driver-470` (which I found relatively reliable as of Jun 2023), click `Apply Changes`, and reboot. 
+
+## Query
+In terminal, type `nvidia-smi` to see current GPU status. 
+
+## Toggle modes
+Nvidia GPU has three modes: always use dGPU, use dGPU on demand, and use only iGPU. The current mode can be obtained via `prime-select query`, and can be set via `sudo prime-select [mode]` followed by a reboot.
 
 ## If you failed to reboot
 If you restarted the computing device right after a fresh Nvidia driver installation / update, and it failed to boot, you probably need some ways to remove these installations. Follow these steps to enter Bash as user `root`: 
