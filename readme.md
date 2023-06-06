@@ -139,22 +139,10 @@ TODO
 * __Xournalpp__: `sudo snap install xournalpp`
 * __Zoom__: `sudo snap install zoom-client`
 
-### Installable via url:
-* [__Android Studio__](https://developer.android.com/studio/install)
-* [__Discord__](https://discord.com/download)
-* [__Slack__](https://slack.com/downloads/linux)
-* [__VSCode__](https://code.visualstudio.com/Download) (login syncs settings)
-* __Google Earth__ (TODO)
+### Notes about **VsCode**:
+Logging into **VsCode** personal account syncs its settings, which can be neat when installing a new OS. 
 
-### Free:
-* __Cura__ (TODO)
-* __Outline__ (TODO)
-* __Miniconda__ (TODO)
-
-### Paid:
-* __Mathematica__ (TODO)
-* __Matlab__ (TODO)
-* __Minecraft__ (TODO)
+From the author's personal observation, the **VsCode** from **snap** packages seem to have incomplete functionalities; installing via the [official website](https://code.visualstudio.com/Download) seems to be the best option.
 
 ### Command Line Interfaces:
 
@@ -163,3 +151,30 @@ TODO
 2. If not started, run `sudo tlp start`
 3. Modify config files via `/etc/tlp.conf`
 4. Use powertop to view power saving info
+
+# Nvidia GPU
+Nvidia graphics card drivers [are generally hard to work with](https://www.youtube.com/watch?v=_36yNWw_07g&ab_channel=Kuttofos). Installing the wrong driver, for example, may make you unable to boot, and thus unable to install the correct driver back. To prevent such an issue, I suggest looking into the next item. 
+
+## If you failed to reboot
+If you restarted the computing device right after a fresh Nvidia driver installation / update, and it failed to boot, you probably need some ways to remove these installations. Follow these steps to enter Bash as user `root`: 
+
+([source1](https://askubuntu.com/questions/1437323/ubuntu-no-longer-boots-after-reinstalling-graphics-driver) [source2](https://askubuntu.com/questions/381613/how-to-return-from-grub-prompt-to-the-grub-menu))
+
+1. Power off and power on again
+2. Press and hold `Esc` (if boot using UEFI) or `Shift` (if boot using BIOS) for a few seconds, until either a shell with `grub>` or a menu appears.  
+   i. If the `grub>` shell appears, type `normal`, press `Enter`, and go to step ii.  
+   ii. If a menu appears, keep pressing `Esc` until some "Advanced xxx" option appears.
+3. Under the "Advanced" option, select recovery mode for the latest possible kernel. 
+4. Another menu shall appear. Select `fsck`, `enable networking`, and then `drop to root prompt`. 
+5. Now you are in Bash as user `root`. Run `sudo apt purge $(dpkg -l | grep ^ii.*nvidia | awk '{print $2}')` to remove all nvidia packages:  
+In particular,    
+6. Run `sudo reboot`.
+
+Now, mistyping commands may jeopardize your OS, so be careful; run the following to remove all **Nvidia** packages: 
+```
+sudo apt purge $(dpkg -l | grep ^ii.*nvidia | awk '{print $2}')
+```
+(note that `dpkg -l` lists all installed packages; `grep ^ii.*nvidia` grabs lines that contain **Nvidia** packages, for more info please search "grep regex cheat sheet"; `awk '{print $2}'` fetches the first term, i.e. package name, from these lines. )
+
+After the above command finishes executing, run `sudo reboot`, and your computing device shall ideally be able to boot. 
+
