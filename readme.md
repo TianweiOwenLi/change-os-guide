@@ -4,19 +4,18 @@ This document is intended to describe the process, potential difficulties, and s
 # What this document is not
 This document is NOT about how to install an OS image on an SSD, as it assumes that you have already successfully installed the OS but yet to configure it. 
 
-This document is NOT a linux command tutorial. If you are confused about some command `xxx`, simply type `xxx -h` or `man xxx` (whichever works) to see its manual. 
+This document is NOT a **bash** / **vim** / **git** / **docker** tutorial. If you are confused about some command `xxx`, simply type `xxx -h` or `man xxx` (whichever works) to see its manual. 
 
 
 # File Management
 Duplicate everything in home directory, store them in an external drive (using `rsync` would be good), and when successfully boot, copy things over as needed.
 Remember to change the ownership / permission via `chown` or `chmod` if needed.
 
-# App Management
-Make a comprehensive list of softwares that you regularly use, be it **Zoom**, **Slack**, **Discord**, **Telegram**, **Mathematica**, **Krita**, **Blender**, **Minecraft**, etc. When the new OS is installed, you can install these softwares all at once or on-demand. Most should be straightforward, for more info please see my `Softwares` section.
 
 # General
-First, tune all settings, power, network, sound, shortcuts, defaults, etc.  
-Optionally, nstall __Tweaks__ through __Ubuntu Software Center__ for a few more tunable settings.
+First, open up **Settings** and tune power, network, sound, shortcuts, defaults, etc. to your preferences.  
+
+Optionally, install __Tweaks__ through __Ubuntu Software Center__ for a few more tunable settings.
 
 ## Gnome Extensions
 Install __Extension Manager__ through __Ubuntu Software Center__. Note that some GNOME extensions will cause a __Wayland__ sessions to freeze, so proceed with caution. When an extension makes a __Wayland__ session unusable, one potential solution is to reboot the device, and login with a different session (something like Xorg might work). 
@@ -27,6 +26,7 @@ Install __Extension Manager__ through __Ubuntu Software Center__. Note that some
 3. Reboot
 4. Go to __Settings > keyboard > Input Sources__, add Chinese and choose "Intelligent Pinyin"
 5. Fine-tune input settings
+
 
 # Commandline
 Before you proceed, the following tools may be helpful and are easily installable via `apt`:  
@@ -65,6 +65,7 @@ check directories `/usr/share/ca-certificates` or `/usr/local/ca-certificates`, 
 1. List available wifis using `nmcli d wifi list` and look up its __SSID__ and __SECURITY__. 
 2. Open up something like "__Advanced Network Configuration__" (for Ubuntu 22.04) or some other interfaces for manually adding network, then add the desired connection accordingly. For Ubuntu 22.04 specifically (and probably generalizes to other OS that uses *NetworkManager*), such network config files are stored at `/etc/NetworkManager/system-connection/`.
 
+
 # Operating System
 
 ## OEM kernel (available to specific devices)
@@ -82,10 +83,15 @@ Accessible via command `efibootmgr -v`; alternatively, press and hold `F1` on st
 3. Run `sudo update-grub` to update grub settings.
 4. The boot options will display when device is powered on.
 
+
 # Media
 `vlc` can be installed using `apt`, and provides some media-related support.
 
-# Workspace
+
+# Environments and Workspaces
+Note that some path exports are in '.zshrc'.
+
+### Git
 The following tools may be helpful and are easily installable via `apt`:  
 `git, gh`
 
@@ -96,35 +102,22 @@ For `git` setup, run
 For `gh` setup, run  
 `gh auth login`
 
-## Pulling existing repo: 
-(TODO) 
-
-# Environments
-Note that some path exports are in '.zshrc'.
-
-### Compiler / environments can readily be installed via `apt`: 
-C++ (`g++`), Standard ML (`smlnj`), Prolog (`gprolog`)
-
-
 ### LaTeX
 [Installation Guide](https://www.tug.org/texlive/doc/texlive-en/texlive-en.html#installation)
-
-### Markdown
-Should be easily editable using **vscode**. An alternative way to view markdown is to `sudo apt install grip`, then `grip -b filename.md` to view it in browser.
 
 ### Docker
 [Installation Guide](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)  
 After installation, one may optionally run `sudo usermod -aG docker $USER`, so that future docker commands do not require `sudo`.
-
 
 ### Other things you may wish to install
 You may wish to install **miniconda** to manage **Python** environments, as well as the environment of other languages / frameworks that you regularly use. Most of these are relatively straightforward to install with a search on internet. 
 
 
 # Softwares
+You are recommended to make a comprehensive list of softwares that you regularly use, be it **Zoom**, **Slack**, **Discord**, **Telegram**, **Mathematica**, **Krita**, **Blender**, **Minecraft**, etc. When the new OS is installed, you can install these softwares all at once or on-demand. Most should be straightforward, for more info please see my `Softwares` section.
 
-### Comes with OS
-* __Firefox__ (login syncs bookmarks, history, etc.)
+### Syncing
+Some softwares like **Firefox** or **VsCode** syncs user settings on login, which may be a useful feature when migrating to a new OS.
 
 ### Installations
 In general, softwares can be installed either from official websites, or via package managers like `apt` or `snap`. The syntax are as follows: 
@@ -133,10 +126,8 @@ In general, softwares can be installed either from official websites, or via pac
 * For downloaded `.deb` files, run `sudo dpkg -i xxx.deb` or `sudo gdebi xxx.deb` to install application. 
 * For downloaded `.AppImage` files, first run `chmod u+x xxx.AppImage` to make it executable, then run `./xxx.AppImage` to run application. 
 
-### Notes about **VsCode**:
-Logging into **VsCode** personal account syncs its settings, which can be neat when installing a new OS. 
-
-From the author's personal observation, the **VsCode** from **snap** packages seem to have incomplete functionalities; installing via the [official website](https://code.visualstudio.com/Download) seems to be the best option.
+### Notes about **snap** packages:
+From the author's personal observation, the **snap** installations of some softwares including but not limited to **VsCode** seem to have incomplete functionalities; in this case, installing via the softwares' official websites seems to be the best option.
 
 
 # Power Management
@@ -150,7 +141,7 @@ From the author's personal observation, the **VsCode** from **snap** packages se
 Nvidia graphics card drivers [are generally hard to work with](https://www.youtube.com/watch?v=_36yNWw_07g&ab_channel=Kuttofos). Installing the wrong driver, for example, may make you unable to boot, and thus unable to install the correct driver back. To prevent such an issue, I suggest looking into the section "If you failed to reboot". 
 
 ## Installation
-For Ubuntu 22.04 specifically, I find that installing using GUI method is appropriate; just go to `Software & Updates` > `Additional Drivers` and select `nvidia-driver-470` (which I found relatively reliable as of Jun 2023), click `Apply Changes`, and reboot. 
+For Ubuntu 22.04 specifically, I find that installing using GUI method is appropriate; just go to **Software & Updates > Additional Drivers** and select `nvidia-driver-470` (which I found relatively reliable as of Jun 2023), click `Apply Changes`, and reboot. 
 
 ## Query
 In terminal, type `nvidia-smi` to see current GPU status. 
