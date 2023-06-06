@@ -1,9 +1,18 @@
 # Introduction
 This document is intended to describe the process, potential difficulties, and solutions when migrating to a new operating system, in this case **Ubuntu 22.04.1** specifically. This document is still under construction, and only works as a source of suggestion.
 
+# What this document is not
+This document is NOT about how to install an OS image on an SSD, as it assumes that you have already successfully installed the OS but yet to configure it. 
+
+This document is NOT a linux command tutorial. If you are confused about some command `xxx`, simply type `xxx -h` or `man xxx` (whichever works) to see its manual. 
+
+
 # File Management
 Duplicate everything in home directory, store them in an external drive (using `rsync` would be good), and when successfully boot, copy things over as needed.
 Remember to change the ownership / permission via `chown` or `chmod` if needed.
+
+# App Management
+Make a comprehensive list of softwares that you regularly use, be it **Zoom**, **Slack**, **Discord**, **Telegram**, **Mathematica**, **Krita**, **Blender**, **Minecraft**, etc. When the new OS is installed, you can install these softwares all at once or on-demand. Most should be straightforward, for more info please see my `Softwares` section.
 
 # General
 First, tune all settings, power, network, sound, shortcuts, defaults, etc.  
@@ -37,7 +46,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 ## Shell
 1. Install: `sudo apt install zsh`  
-2. Setup: `zsh`  
+2. Setup: simply type `zsh`  
 3. Install __oh-my-zsh__: ```sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"```
 4. Copy .zshrc  
 5. Change shell: `chsh -s $(which zsh)`  
@@ -58,12 +67,11 @@ check directories `/usr/share/ca-certificates` or `/usr/local/ca-certificates`, 
 
 # Operating System
 
-## OEM kernel
-1. Install: `sudo apt install linux-oem-22.04a`
-2. Reboot
+## OEM kernel (available to specific devices)
+Run something like `sudo apt install linux-oem-22.04a` and reboot.
 
 ## Boot order
-Accessible via command `efibootmgr -v`. 
+Accessible via command `efibootmgr -v`; alternatively, press and hold `F1` on startup, and modify boot order when BIOS interface appears. 
 
 ## Manually update firmware
 (TODO)
@@ -75,7 +83,7 @@ Accessible via command `efibootmgr -v`.
 4. The boot options will display when device is powered on.
 
 # Media
-`eog, grip, vlc` can be installed using `apt`, and provides some media-related support.
+`vlc` can be installed using `apt`, and provides some media-related support.
 
 # Workspace
 The following tools may be helpful and are easily installable via `apt`:  
@@ -94,20 +102,9 @@ For `gh` setup, run
 # Environments
 Note that some path exports are in '.zshrc'.
 
-Also, 
+### Compiler / environments can readily be installed via `apt`: 
+C++ (`g++`), Standard ML (`smlnj`), Prolog (`gprolog`)
 
-### C++
-`sudo apt intall g++`
-
-### Rust
-Link is [here](https://www.rust-lang.org/tools/install):  
-`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
-
-### SML
-`sudo apt install smlnj`
-
-### Prolog
-`sudo apt install gprolog`
 
 ### LaTeX
 [Installation Guide](https://www.tug.org/texlive/doc/texlive-en/texlive-en.html#installation)
@@ -118,6 +115,10 @@ Should be easily editable using **vscode**. An alternative way to view markdown 
 ### Docker
 [Installation Guide](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)  
 After installation, one may optionally run `sudo usermod -aG docker $USER`, so that future docker commands do not require `sudo`.
+
+
+### Other things you may wish to install
+You may wish to install **miniconda** to manage **Python** environments, as well as the environment of other languages / frameworks that you regularly use. Most of these are relatively straightforward to install with a search on internet. 
 
 
 # Softwares
