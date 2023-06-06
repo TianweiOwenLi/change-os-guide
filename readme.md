@@ -139,10 +139,11 @@ From the author's personal observation, the **VsCode** from **snap** packages se
 
 
 # Power Management
-1. Install needed softwares: `sudo apt install tlp powertop`
-2. If not started, run `sudo tlp start`
-3. Modify config files via `/etc/tlp.conf`
-4. Use powertop to view power saving info
+1. Install `tlp` and `powertop` via `apt`. 
+2. If not started, run `sudo tlp start`.
+3. Modify `tlp` config files at `/etc/tlp.conf`.
+4. Run `sudo powertop` to view power saving info.
+5. `tlp-stat` can also provide insight on hardware settings and power usage potentials.
 
 # Nvidia GPU
 Nvidia graphics card drivers [are generally hard to work with](https://www.youtube.com/watch?v=_36yNWw_07g&ab_channel=Kuttofos). Installing the wrong driver, for example, may make you unable to boot, and thus unable to install the correct driver back. To prevent such an issue, I suggest looking into the section "If you failed to reboot". 
