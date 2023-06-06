@@ -125,17 +125,18 @@ After installation, one may optionally run `sudo usermod -aG docker $USER`, so t
 ### Comes with OS
 * __Firefox__ (login syncs bookmarks, history, etc.)
 
-### Installable via `sudo snap install`:   
-zoom-client, xournalpp, telegram-desktop, krita, gimp
-### Installable via `sudo snap install [name] --classic`:   
-blender
+### Installations
+In general, softwares can be installed either from official websites, or via package managers like `apt` or `snap`. The syntax are as follows: 
+* For `apt,`, run `sudo apt install [package]` to install application.
+* For `snap`, run `sudo snap install [package]` or if this does not work, try `sudo snap install [package] --classic`, both of which installs application. 
+* For downloaded `.deb` files, run `sudo dpkg -i xxx.deb` or `sudo gdebi xxx.deb` to install application. 
+* For downloaded `.AppImage` files, first run `chmod u+x xxx.AppImage` to make it executable, then run `./xxx.AppImage` to run application. 
 
 ### Notes about **VsCode**:
 Logging into **VsCode** personal account syncs its settings, which can be neat when installing a new OS. 
 
 From the author's personal observation, the **VsCode** from **snap** packages seem to have incomplete functionalities; installing via the [official website](https://code.visualstudio.com/Download) seems to be the best option.
 
-### Command Line Interfaces:
 
 # Power Management
 1. Install needed softwares: `sudo apt install tlp powertop`
