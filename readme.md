@@ -137,6 +137,9 @@ From the author's personal observation, the **snap** installations of some softw
 4. Run `sudo powertop` to view power saving info.
 5. `tlp-stat` can also provide insight on hardware settings and power usage potentials.
 
+## (Updated Jun 2023) If you failed to suspend
+It seems that `sudo systemctl suspend` no longer suspends the machine. Downloading `pm-utils` via `apt` and typing command `sudo pm-suspend` seems to work. 
+
 # Nvidia GPU
 Nvidia graphics card drivers [are generally hard to work with](https://www.youtube.com/watch?v=_36yNWw_07g&ab_channel=Kuttofos). Installing the wrong driver, for example, may make you unable to boot, and thus unable to install the correct driver back. To prevent such an issue, I suggest looking into the section "If you failed to reboot". 
 
